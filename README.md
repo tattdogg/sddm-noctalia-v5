@@ -1,48 +1,32 @@
-# Nothing UI SDDM Theme
+# My SDDM Themes
 
-Void UI SDDM is a sleek, minimalist login theme for **SDDM (Simple Desktop Display Manager)**, inspired by **Nothing OS UI**. It features a monochrome aesthetic, dot-matrix elements, and a clean, futuristic design tailored for Hyprland and KDE users.
+A collection of custom themes for SDDM (Simple Desktop Display Manager), featuring designs inspired by Nothing OS and Google Pixel UI.
 
-![Void UI SDDM Preview](image.png)
+## Available Themes
 
-## Features
-- **Minimalist Design** – Inspired by Nothing OS UI.
-- **Modular QML Components** – Structured for easy customization.
-- **Dark and Light Modes** – Seamless adaptation to different setups.
-- **Smooth Animations** – Lightweight yet visually appealing.
-- **Custom Font Support** – Uses a dot-matrix-inspired typeface.
+### 1. Nothing OS Theme
 
-## Installation
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/mahaveergurjar/Nothing-SDDM.git
-   ```
-2. Move the theme to SDDM's theme directory:
-   ```sh
-   sudo mv Nothing-SDDM /usr/share/sddm/themes/
-   ```
-3. Edit the SDDM configuration to use the theme:
-   ```sh
-   sudo nano /etc/sddm.conf
-   ```
-   Add or modify the following:
-   ```ini
-   [Theme]
-   Current=Nothing-SDDM
-   ```
-4. Restart SDDM:
-   ```sh
-   sudo systemctl restart sddm
-   ```
+A minimalist, monochrome login theme inspired by the unique aesthetic of Nothing OS. It features dot-matrix typography and a clean, futuristic look.
 
-## Preview
-If you want to test the theme without restarting SDDM, run:
-```sh
-sddm-greeter --test-mode --theme /usr/share/sddm/themes/Nothing-SDDM
-```
+![Nothing Theme Screenshot](https://raw.githubusercontent.com/mahaveergurjar/sddm/nothing/image.png)
 
-## Credits
-- Inspired by **Nothing OS UI**.
-- Built for **Hyprland and KDE users**.
+[**➡️ View "Nothing" Theme Branch**](https://github.com/mahaveergurjar/sddm/tree/nothing)
 
 ---
-**Contributions are welcome!** Feel free to fork and improve the theme.
+
+### 2. Pixel UI Theme
+
+A modern and vibrant theme based on the Android 16 Pixel UI design language. It brings the familiar, polished look of Pixel devices to your login screen.
+
+![Pixel Theme Screenshot](https://raw.githubusercontent.com/mahaveergurjar/sddm/pixel/image.png)
+
+[**➡️ View "Pixel" Theme Branch**](https://github.com/mahaveergurjar/sddm/tree/pixel)
+
+## Installation
+
+To install a specific theme:
+
+1. Click the **View Branch** link for the theme you want.
+2. Clone that specific branch or download the files.
+3. Place the theme folder into your SDDM themes directory (usually `/usr/share/sddm/themes/`).
+4. Update your `/etc/sddm.conf` to apply the new theme.

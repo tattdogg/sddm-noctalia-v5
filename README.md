@@ -68,10 +68,10 @@ blurRadius=0
 You can test the theme without logging out by running the sddm-greeter in test mode:
 
 ```sh
-sddm-greeter --test-mode --theme /usr/share/sddm/themes/sddm
+sddm-greeter-qt6 --test-mode --theme /usr/share/sddm/themes/sddm
 ```
 
-_Note: Ensure you have `qt6-5compat` and `qt6-declarative` installed for Qt6 compatibility._
+_Note: If you run into "module is not installed" errors, ensure you are using `sddm-greeter-qt6` and have `qt6-5compat` and `qt6-declarative` installed._
 
 ## Credits
 

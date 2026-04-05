@@ -30,7 +30,7 @@ Rectangle {
     readonly property color mOutline: config.mOutline || "#342c42"
     
     // Responsive sizes
-    readonly property real radiusL: 20
+    readonly property real configRadiusL: config.radius || 20
     readonly property real fontSizeM: 12 * scaleFactor
     readonly property real fontSizeL: 14 * scaleFactor
     readonly property real fontSizeXL: 20 * scaleFactor
@@ -94,7 +94,7 @@ Rectangle {
         
         width: Math.max(600 * scaleFactor, Math.min(parent.width * 0.70, 550 * scaleFactor))
         height: 130 * scaleFactor
-        radius: root.radiusL
+        radius: root.configRadiusL
         color: root.mSurface
         border.color: Qt.rgba(root.mOutline.r, root.mOutline.g, root.mOutline.b, 0.2)
         border.width: 1 * scaleFactor
@@ -306,7 +306,7 @@ Rectangle {
         
         width: Math.min(750 * scaleFactor, parent.width * 0.9)
         height: 145 * scaleFactor
-        radius: root.radiusL
+        radius: root.configRadiusL
         color: root.mSurface
         border.color: Qt.rgba(root.mOutline.r, root.mOutline.g, root.mOutline.b, 0.2)
         border.width: 1 * scaleFactor
@@ -328,7 +328,7 @@ Rectangle {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     color: root.mSurfaceVariant
-                    radius: 20 * scaleFactor
+                    radius: root.configRadiusL
                     border.width: 3 * scaleFactor
                     border.color: root.mPrimary
                     
@@ -373,7 +373,7 @@ Rectangle {
                     
                     background: Rectangle {
                         color: parent.down ? Qt.darker(root.mPrimary, 1.2) : root.mPrimary
-                        radius: 20 * scaleFactor
+                        radius: root.configRadiusL
                     }
                     
                     contentItem: Text {
@@ -421,7 +421,7 @@ Rectangle {
                    
                    background: Rectangle {
                        color: root.mSurfaceVariant
-                       radius: 20 * scaleFactor
+                       radius: root.configRadiusL
                    }
                    
                    contentItem: Text {
@@ -450,7 +450,7 @@ Rectangle {
                        background: Rectangle {
                            border.color: root.mOutline
                            color: root.mSurface
-                           radius: 20 * scaleFactor 
+                           radius: root.configRadiusL
                        }
                    }
                }
@@ -472,7 +472,7 @@ Rectangle {
                         
                         background: Rectangle {
                             color: parent.down ? Qt.darker(root.mSurfaceVariant, 1.2) : root.mSurfaceVariant
-                            radius: 20 * scaleFactor
+                            radius: root.configRadiusL
                         }
                         
                         contentItem: Text {
@@ -507,7 +507,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: bottomCard.top
         anchors.bottomMargin: 20 * scaleFactor
-        radius: root.radiusL
+        radius: root.configRadiusL
         color: root.mError
         visible: errorMessage.text !== ""
         

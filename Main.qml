@@ -89,7 +89,7 @@ Rectangle {
     Rectangle {
         id: headerCard
         anchors.top: parent.top
-        anchors.topMargin: parent.height * 0.12
+        anchors.topMargin: parent.height * 0.11
         anchors.horizontalCenter: parent.horizontalCenter
         
         width: Math.max(600 * scaleFactor, Math.min(parent.width * 0.70, 550 * scaleFactor))
@@ -193,8 +193,8 @@ Rectangle {
                         paths.push("file:///var/lib/AccountsService/icons/" + u)
                     }
                     
-                    // 4. Default fallback
-                    paths.push("file:///usr/share/sddm/faces/.face.icon")
+                    // 4. return empty
+                    paths.push("")
                     
                     return paths
                 }
@@ -235,13 +235,13 @@ Rectangle {
                         }
                     }
                 }
-                
+
                 // Fallback logo if user avatar not available
                 Image {
                     id: fallbackLogo
                     anchors.fill: parent
-                    anchors.margins: 8 * scaleFactor
-                    source: "Assets/logo.svg"
+                    anchors.margins: 20 * scaleFactor
+                    source: "Assets/user.svg"
                     sourceSize: Qt.size(70 * scaleFactor, 70 * scaleFactor)
                     fillMode: Image.PreserveAspectFit
                     smooth: true
@@ -298,6 +298,7 @@ Rectangle {
     // -------------------------------------------------------------------------
     // Bottom Card: Password & Controls
     // -------------------------------------------------------------------------
+
     Rectangle {
         id: bottomCard
         anchors.bottom: parent.bottom
@@ -310,12 +311,13 @@ Rectangle {
         color: root.mSurface
         border.color: Qt.rgba(root.mOutline.r, root.mOutline.g, root.mOutline.b, 0.2)
         border.width: 1 * scaleFactor
-        
+
+
         ColumnLayout {
             anchors.fill: parent
             anchors.margins: 20 * scaleFactor
             spacing: 15 * scaleFactor
-            
+
             // Password Field Row
             RowLayout {
                 Layout.fillWidth: true

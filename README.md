@@ -1,8 +1,8 @@
 # Noctalia SDDM Theme
 
-Noctalia SDDM is a cozy, elegant login theme for **SDDM (Simple Desktop Display Manager)**, designed to complement the **Noctalia Shell** experience. It mimics the warm, dark aesthetic of the Rose Pine color palette, featuring rounded corners, smooth scaling, and a clean, modern interface tailored for Hyprland and KDE users.
+Noctalia SDDM is a cozy, elegant login theme for **SDDM (Simple Desktop Display Manager)**, designed to complement the **Noctalia Shell** experience.
 
-![Noctalia SDDM Preview](Assets/preview.png)
+![Noctalia SDDM Sync Preview](Assets/preview-sync.png)
 
 ## Features
 
@@ -12,7 +12,6 @@ Noctalia SDDM is a cozy, elegant login theme for **SDDM (Simple Desktop Display 
 - **Smart Avatar Handling** – Automatically detects user profile pictures or gracefully falls back to defaults.
 - **Session Management** – Built-in support for switching desktop sessions (Wayland/X11).
 
-- **Integrated Power Controls** – Suspend, Reboot, and Shutdown accessible directly from the login screen.
 - **Customizable Configuration** – easy tweaks via `theme.conf`.
 
 ## Installation
@@ -87,8 +86,11 @@ background=Assets/background.png
 blurRadius=0
 radius=20
 ```
+
 ## TODO
+- capslock,numlock and keyboard state indicators
 - animations
+- Some icons for Sessions
 
 ## Preview
 

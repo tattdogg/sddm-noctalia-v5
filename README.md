@@ -19,7 +19,7 @@ Noctalia SDDM is a cozy, elegant login theme for **SDDM (Simple Desktop Display 
 ### 1. Clone the repository
 
 ```sh
-git clone sddm-noctalia https://github.com/vorxiu/sddm-noctalia.git
+git clone --depth=1 https://github.com/vorxiu/sddm-noctalia.git
 ```
 
 ### 2. Install the theme

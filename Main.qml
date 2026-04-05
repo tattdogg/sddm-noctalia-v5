@@ -14,7 +14,7 @@ Rectangle {
     // -------------------------------------------------------------------------
     // Responsive Scaling
     // -------------------------------------------------------------------------
-    readonly property real scaleFactor: Math.max(0.5, Math.min(width / 1920, height / 1080))
+    readonly property real scaleFactor: Math.max(0.9, Math.min(width / 1920, height / 1080))
     readonly property real baseUnit: 8 * scaleFactor
     
     // -------------------------------------------------------------------------
@@ -30,11 +30,11 @@ Rectangle {
     readonly property color mOutline: config.mOutline || "#342c42"
     
     // Responsive sizes
-    readonly property real radiusL: 20 * scaleFactor
-    readonly property real fontSizeM: 11 * scaleFactor
-    readonly property real fontSizeL: 13 * scaleFactor
-    readonly property real fontSizeXL: 16 * scaleFactor
-    readonly property real fontSizeXXL: 18 * scaleFactor
+    readonly property real radiusL: 20
+    readonly property real fontSizeM: 12 * scaleFactor
+    readonly property real fontSizeL: 14 * scaleFactor
+    readonly property real fontSizeXL: 20 * scaleFactor
+    readonly property real fontSizeXXL: 26 * scaleFactor
     readonly property real fontSizeClock: 42 * scaleFactor
 
     // Configurable Background
@@ -42,7 +42,7 @@ Rectangle {
 
     // Fonts
     property font fontMain: Qt.font({
-        family: "Noto Sans",
+        family: "Jetbrains Mono",
         pixelSize: 14 * scaleFactor
     })
     
@@ -77,9 +77,9 @@ Rectangle {
     Rectangle {
         anchors.fill: parent
         gradient: Gradient {
-            GradientStop { position: 0.0; color: Qt.rgba(0,0,0,0.6) } // Darker top
-            GradientStop { position: 0.4; color: Qt.rgba(0,0,0,0.2) }
-            GradientStop { position: 1.0; color: Qt.rgba(0,0,0,0.7) } // Darker bottom
+            GradientStop { position: 0.0; color: Qt.rgba(0,0,0,0.4) } // Darker top
+            GradientStop { position: 0.4; color: Qt.rgba(0,0,0,0.1) }
+            GradientStop { position: 1.0; color: Qt.rgba(0,0,0,0.5) } // Darker bottom
         }
     }
     
@@ -92,8 +92,8 @@ Rectangle {
         anchors.topMargin: parent.height * 0.12
         anchors.horizontalCenter: parent.horizontalCenter
         
-        width: Math.max(400 * scaleFactor, Math.min(parent.width * 0.70, 550 * scaleFactor))
-        height: 120 * scaleFactor
+        width: Math.max(600 * scaleFactor, Math.min(parent.width * 0.70, 550 * scaleFactor))
+        height: 130 * scaleFactor
         radius: root.radiusL
         color: root.mSurface
         border.color: Qt.rgba(root.mOutline.r, root.mOutline.g, root.mOutline.b, 0.2)
@@ -103,7 +103,7 @@ Rectangle {
             id: headerRow
             anchors.fill: parent
             anchors.margins: 16 * scaleFactor
-            spacing: 32 * scaleFactor
+            spacing: 30 * scaleFactor
 
             // Avatar - Perfect Circle
             Item {
@@ -175,12 +175,12 @@ Rectangle {
                     
                     if (u) {
                         // 1. Try path from userModel (if any)
-                        if (currentIcon && currentIcon !== "") {
-                            var p = currentIcon
-                            if (p.indexOf("://") === -1 && p.charAt(0) === '/') 
-                                p = "file://" + p
-                            paths.push(p)
-                        }
+                        // if (currentIcon && currentIcon !== "") {
+                        //     var p = currentIcon
+                        //     if (p.indexOf("://") === -1 && p.charAt(0) === '/') 
+                        //         p = "file://" + p
+                        //     paths.push(p)
+                        // }
                         
                         // 2. Try home directory faces
                         if (currentHome) {
@@ -211,6 +211,7 @@ Rectangle {
                 Image {
                     id: userAvatar
                     anchors.fill: parent
+                    anchors.margins: 4 * scaleFactor
                     source: {
                         if (parent.iconPaths.length === 0) return ""
                         var idx = Math.min(parent.tryIndex, parent.iconPaths.length - 1)
@@ -245,7 +246,6 @@ Rectangle {
                     fillMode: Image.PreserveAspectFit
                     smooth: true
                     visible: userAvatar.status !== Image.Ready && userAvatar.status !== Image.Loading
-                    
                     layer.enabled: true
                     layer.effect: OpacityMask {
                         maskSource: avatarMask
@@ -258,25 +258,26 @@ Rectangle {
                     radius: width / 2
                     color: "transparent"
                     border.color: root.mPrimary
-                    border.width: 2 * scaleFactor
+                    border.width: 2.5 * scaleFactor
                 }
             }
             
             // Text Info
             ColumnLayout {
                 Layout.alignment: Qt.AlignVCenter
-                spacing: 2 * scaleFactor
+                spacing: 0 * scaleFactor
                 
                 Text {
                     text: "Welcome back, " + avatarRect.displayName + "!"
                     font.pixelSize: root.fontSizeXXL
-                    font.bold: true
+                    font.bold: false
                     color: root.mOnSurface
                 }
                 
                 Text {
                     text: Qt.formatDate(new Date(), "dddd, MMMM d")
                     font.pixelSize: root.fontSizeXL
+                    Layout.topMargin: -18
                     color: root.mOnSurfaceVariant
                 }
             }
@@ -304,7 +305,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         
         width: Math.min(750 * scaleFactor, parent.width * 0.9)
-        height: 140 * scaleFactor
+        height: 145 * scaleFactor
         radius: root.radiusL
         color: root.mSurface
         border.color: Qt.rgba(root.mOutline.r, root.mOutline.g, root.mOutline.b, 0.2)
@@ -318,15 +319,18 @@ Rectangle {
             // Password Field Row
             RowLayout {
                 Layout.fillWidth: true
-                Layout.preferredHeight: 50 * scaleFactor
-                spacing: 15 * scaleFactor
+                Layout.preferredHeight: 40 * scaleFactor
+                spacing: 20 * scaleFactor
+                
                 
                 // Input Box
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     color: root.mSurfaceVariant
-                    radius: 12 * scaleFactor
+                    radius: 20 * scaleFactor
+                    border.width: 3 * scaleFactor
+                    border.color: root.mPrimary
                     
                     TextInput {
                         id: passwordBox
@@ -337,8 +341,9 @@ Rectangle {
                         text: ""
                         echoMode: TextInput.Password
                         color: root.mOnSurface
-                        font.pixelSize: 14 * scaleFactor
-                        
+                        font.pixelSize: 12 * scaleFactor
+                        font.letterSpacing: 4
+
                         focus: true
                         
                         onAccepted: sddm.login(userModel.lastUser, passwordBox.text, sessionModel.lastIndex)
@@ -363,23 +368,22 @@ Rectangle {
                 
                 // Login Button
                 Controls.Button {
-                    Layout.preferredWidth: 100 * scaleFactor
+                    Layout.preferredWidth: 60 * scaleFactor
                     Layout.fillHeight: true
                     
                     background: Rectangle {
                         color: parent.down ? Qt.darker(root.mPrimary, 1.2) : root.mPrimary
-                        radius: 12 * scaleFactor
+                        radius: 20 * scaleFactor
                     }
                     
                     contentItem: Text {
-                        text: "Login"
-                        font.pixelSize: 14 * scaleFactor
-                        font.bold: true
+                        text: "󰍂 "
+                        font.pixelSize: 20 * scaleFactor
+                        font.bold: false
                         color: root.mOnPrimary
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                     }
-                    
                     onClicked: sddm.login(userModel.lastUser, passwordBox.text, sessionModel.lastIndex)
                 }
             }
@@ -396,8 +400,8 @@ Rectangle {
                    textRole: "name"
                    currentIndex: sessionModel.lastIndex
                    
-                   Layout.preferredWidth: 200 * scaleFactor
-                   Layout.preferredHeight: 36 * scaleFactor
+                   Layout.preferredWidth: 120 * scaleFactor
+                   Layout.preferredHeight: 40 * scaleFactor
                    
                    delegate: Controls.ItemDelegate {
                        width: parent.width
@@ -407,6 +411,7 @@ Rectangle {
                            text: parent.text
                            color: root.mOnSurface
                            font.pixelSize: root.fontSizeM
+                           font.bold: true
                            verticalAlignment: Text.AlignVCenter
                        }
                        background: Rectangle {
@@ -416,14 +421,15 @@ Rectangle {
                    
                    background: Rectangle {
                        color: root.mSurfaceVariant
-                       radius: 8 * scaleFactor
+                       radius: 20 * scaleFactor
                    }
                    
                    contentItem: Text {
-                       leftPadding: 10 * scaleFactor
+                       leftPadding: 16 * scaleFactor
                        text: sessionList.displayText || ""
                        color: root.mOnSurface
-                       font.pixelSize: root.fontSizeM
+                       font.pixelSize: root.fontSizeL
+                        font.bold: true
                        verticalAlignment: Text.AlignVCenter
                    }
 
@@ -431,7 +437,7 @@ Rectangle {
                        y: sessionList.height - 1
                        width: sessionList.width
                        implicitHeight: contentItem.implicitHeight
-                       padding: 1 * scaleFactor
+                       padding: 2 * scaleFactor
 
                        contentItem: ListView {
                            clip: true
@@ -444,7 +450,7 @@ Rectangle {
                        background: Rectangle {
                            border.color: root.mOutline
                            color: root.mSurface
-                           radius: 4 * scaleFactor
+                           radius: 20 * scaleFactor 
                        }
                    }
                }
@@ -461,17 +467,17 @@ Rectangle {
                     
                     delegate: Controls.Button {
                         text: modelData.text
-                        Layout.preferredHeight: 36 * scaleFactor
+                        Layout.preferredHeight: 40 * scaleFactor
                         Layout.preferredWidth: 100 * scaleFactor
                         
                         background: Rectangle {
                             color: parent.down ? Qt.darker(root.mSurfaceVariant, 1.2) : root.mSurfaceVariant
-                            radius: 8 * scaleFactor
+                            radius: 20 * scaleFactor
                         }
                         
                         contentItem: Text {
                             text: parent.text
-                            font.pixelSize: root.fontSizeM
+                            font.pixelSize: root.fontSizeL
                             color: root.mOnSurface
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter

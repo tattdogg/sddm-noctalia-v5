@@ -502,7 +502,7 @@ Rectangle {
                     Image {
                         id: eyeIcon
                         anchors.right: parent.right
-                        anchors.rightMargin: 14 * scaleFactor
+                        anchors.rightMargin: 16 * scaleFactor
                         anchors.verticalCenter: parent.verticalCenter
                         width: 18 * scaleFactor
                         height: 18 * scaleFactor
@@ -511,7 +511,7 @@ Rectangle {
                         smooth: true
                         layer.enabled: true
                         layer.effect: ColorOverlay {
-                            color:  root.mTertiary passwordField.showPassword ? "Assets/eye-off.svg" : "Assets/eye.svg"
+                            color:  root.mTertiary
                         }
                     }
                     MouseArea {

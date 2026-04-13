@@ -42,7 +42,7 @@ Rectangle {
 
     // Fonts
     property font fontMain: Qt.font({
-        family: "JetBrainsMono NF",
+        family: root.fontFamily || "Noto Sans",
         pixelSize: 14 * scaleFactor
     })
 
@@ -176,7 +176,7 @@ Rectangle {
                 onDisplayUserChanged: {
                     tryIndex = 0;
                 }
-
+                
                 // Get list of icon paths to try
                 property var iconPaths: {
                     var paths = [];
@@ -287,15 +287,14 @@ Rectangle {
                 Text {
                     text: Qt.formatDate(new Date(), "dddd, MMMM d")
                     font.pixelSize: root.fontSizeXL
-                    Layout.topMargin: -10 * scaleFactor
+                    Layout.topMargin: -9 * scaleFactor
                     color: root.mOnSurfaceVariant
                 }
             }
 
             Item {
                 Layout.fillWidth: true
-            } // Spacer
-
+            } 
 
             // Clock
             Text {
@@ -328,7 +327,7 @@ Rectangle {
     Rectangle {
             id: topPill
             height: 35 * scaleFactor
-            width: keyboard.layout > 1 ? 220 * scaleFactor : 200 * scaleFactor
+            width: 220 * scaleFactor
             // radius: height / 2
             topLeftRadius: height / 2
             topRightRadius: height / 2
@@ -341,7 +340,6 @@ Rectangle {
             border.color: Qt.rgba(root.mOutline.r, root.mOutline.g, root.mOutline.b, 0.2)
             border.width: 1 * scaleFactor
 
-            // visible: keyboard.layouts.count > 1
 
             RowLayout {
                 anchors.centerIn: parent
@@ -354,7 +352,6 @@ Rectangle {
                     fillMode: Image.PreserveAspectFit
                     smooth: true
                     Layout.alignment: Qt.AlignVCenter
-                    visible: keyboard.layouts.count > 1
                 }
 
                 Text {
@@ -369,13 +366,10 @@ Rectangle {
                             }
                         }
                     }
-                    text: keyboard.layouts.count > 0
-                        ? keyboard.layouts.get(keyboard.currentLayout).shortName
-                        : ""
+                    text: keyboard.layouts.get(keyboard.currentLayout).shortName
                     color: root.mOnSurface
                     font.pixelSize: root.fontSizeL
                     Layout.alignment: Qt.AlignVCenter
-                    visible: keyboard.layouts.count > 1
                 }
                 // spacer
                 Item {
@@ -422,7 +416,7 @@ Rectangle {
                     Layout.alignment: Qt.AlignVCenter
                     layer.enabled: true
                     layer.effect: ColorOverlay {
-                        color: keyboard.numLock ? true : Qt.rgba(0, 0, 0, 0.5) // Semi-transparent black overlay
+                        color: keyboard.numLock ? true : Qt.rgba(0, 0, 0, 0.4) // Semi-transparent black overlay
                     }
                 }
                 Text {
@@ -447,10 +441,7 @@ Rectangle {
 
                 }
             }
-
     }
-
-
         ColumnLayout {
             anchors.fill: parent
             anchors.margins: 20 * scaleFactor

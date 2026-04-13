@@ -2,6 +2,9 @@
 
 Noctalia SDDM is a cozy, elegant login theme for **SDDM (Simple Desktop Display Manager)**, designed to complement the **Noctalia Shell** experience.
 
+> might want to install
+> qt6-qt5compat
+
 ![Noctalia SDDM Sync Preview](Assets/preview-sync.png)
 
 ## Features
@@ -31,7 +34,7 @@ sudo cp -r sddm-noctalia /usr/share/sddm/themes/
 ```
 
 ### 3. Configure SDDM
-
+ chezmoi-init
 Edit your SDDM configuration file to use the new theme:
 
 ```sh

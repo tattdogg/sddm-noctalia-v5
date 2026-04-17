@@ -338,7 +338,7 @@ Rectangle {
             color: root.mSurface
             border.color: Qt.rgba(root.mOutline.r, root.mOutline.g, root.mOutline.b, 0.2)
             border.width: 1 * scaleFactor
-
+            visible: false
 
             RowLayout {
                 anchors.centerIn: parent
@@ -442,7 +442,7 @@ Rectangle {
 
                 }
             }
-    }
+        }
         ColumnLayout {
             anchors.fill: parent
             anchors.margins: 20 * scaleFactor

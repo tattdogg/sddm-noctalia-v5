@@ -355,6 +355,10 @@ Rectangle {
                 }
 
                 Text {
+                    text: keyboard.layouts.get(keyboard.currentLayout).shortName 
+                    color: root.mOnSurface
+                    font.pixelSize: root.fontSizeL
+                    Layout.alignment: Qt.AlignVCenter
                     MouseArea {
                         id: kbdMouseArea
                         anchors.fill: parent
@@ -366,10 +370,6 @@ Rectangle {
                             }
                         }
                     }
-                    text: keyboard.layouts.get(keyboard.currentLayout).shortName
-                    color: root.mOnSurface
-                    font.pixelSize: root.fontSizeL
-                    Layout.alignment: Qt.AlignVCenter
                 }
                 // spacer
                 Item {

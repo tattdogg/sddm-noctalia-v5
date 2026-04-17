@@ -316,8 +316,7 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 100 * scaleFactor
         anchors.horizontalCenter: parent.horizontalCenter
-
-        width: Math.min(750 * scaleFactor, parent.width * 0.9)
+        width: Math.min(800 * scaleFactor, parent.width * 0.9)
         height: 145 * scaleFactor
         radius: root.configRadiusL
         color: root.mSurface
@@ -352,13 +351,15 @@ Rectangle {
                     fillMode: Image.PreserveAspectFit
                     smooth: true
                     Layout.alignment: Qt.AlignVCenter
+                    visible: keyboard.enabled && keyboard.layouts.length > 0
                 }
 
                 Text {
-                    text: keyboard.layouts.get(keyboard.currentLayout).shortName 
+                    text: keyboard.layouts[keyboard.currentLayout].shortName
                     color: root.mOnSurface
                     font.pixelSize: root.fontSizeL
                     Layout.alignment: Qt.AlignVCenter
+                    visible: keyboard.enabled && keyboard.layouts.length > 0
                     MouseArea {
                         id: kbdMouseArea
                         anchors.fill: parent
@@ -467,7 +468,10 @@ Rectangle {
                     TextInput {
                         id: passwordBox
                         anchors.fill: parent
-                        anchors.margins: 15 * scaleFactor
+                        anchors.leftMargin: 15 * scaleFactor
+                        anchors.rightMargin: 95 * scaleFactor
+                        anchors.topMargin: 10 * scaleFactor
+                        anchors.bottomMargin: 10 * scaleFactor
                         verticalAlignment: Text.AlignVCenter
 
                         text: ""
@@ -490,29 +494,70 @@ Rectangle {
                             }
                         }
                     }
-                    Image {
-                        id: eyeIcon
+
+                    RowLayout {
                         anchors.right: parent.right
-                        anchors.rightMargin: 16 * scaleFactor
+                        anchors.rightMargin: 8 * scaleFactor
                         anchors.verticalCenter: parent.verticalCenter
-                        width: 18 * scaleFactor
-                        height: 18 * scaleFactor
-                        source: passwordField.showPassword ? "Assets/eye.svg" : "Assets/eye-off.svg"
-                        fillMode: Image.PreserveAspectFit
-                        smooth: true
-                        layer.enabled: true
-                        layer.effect: ColorOverlay {
-                            color:  root.mTertiary
+                        spacing: 16 * scaleFactor
+
+                        Image {
+                            id: eyeIcon
+                            Layout.preferredWidth: 16 * scaleFactor
+                            Layout.preferredHeight: 18 * scaleFactor
+                            source: passwordField.showPassword ? "Assets/eye-off.svg" : "Assets/eye.svg"
+                            fillMode: Image.PreserveAspectFit
+                            sourceSize: Qt.size(24 * scaleFactor, 24 * scaleFactor)
+
+                            smooth: true
+                            layer.enabled: true
+                            layer.effect: ColorOverlay {
+                                color: root.mOnSurfaceVariant
+                            }
+                            visible: passwordBox.text.length > 0
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: passwordField.showPassword = !passwordField.showPassword
+                            }
+                        }
+
+                        Controls.Button {
+                            Layout.preferredWidth: 36 * scaleFactor
+                            Layout.preferredHeight: 36 * scaleFactor
+
+                            background: Rectangle {
+                                color: "transparent"
+                                radius: root.configRadiusL
+                                border.width: 1.4 * scaleFactor
+                                border.color: root.mPrimary
+                            }
+
+                                Image {
+                                    anchors.centerIn: parent
+                                    width: 16 * scaleFactor
+                                    height: 16 * scaleFactor
+                                    source: "Assets/arrow-forward.svg"
+                                    fillMode: Image.PreserveAspectFit
+                                    smooth: true
+                                    sourceSize: Qt.size(24 * scaleFactor, 24 * scaleFactor)
+                                    layer.enabled: true
+                                    layer.effect: ColorOverlay {
+                                        color: root.mPrimary
+                                    }
+                            }
+
+                            onClicked: sddm.login(userModel.lastUser, passwordBox.text, sessionModel.lastIndex)
                         }
                     }
-                    MouseArea {
-                            anchors.fill: eyeIcon
-                            cursorShape: Qt.PointingHandCursor
-                            onClicked: passwordField.showPassword = !passwordField.showPassword
-                    }
+
                     Text {
                         anchors.fill: parent
-                        anchors.margins: 15 * scaleFactor
+                        anchors.leftMargin: 15 * scaleFactor
+                        anchors.rightMargin: 95 * scaleFactor
+                        anchors.topMargin: 10 * scaleFactor
+                        anchors.bottomMargin: 10 * scaleFactor
                         verticalAlignment: Text.AlignVCenter
                         text: "Password..."
                         color: Qt.rgba(root.mOnSurfaceVariant.r, root.mOnSurfaceVariant.g, root.mOnSurfaceVariant.b, 0.5)
@@ -521,26 +566,7 @@ Rectangle {
                     }
                 }
 
-                // Login Button
-                Controls.Button {
-                    Layout.preferredWidth: 60 * scaleFactor
-                    Layout.fillHeight: true
-
-                    background: Rectangle {
-                        color: parent.down ? Qt.darker(root.mPrimary, 1.2) : root.mPrimary
-                        radius: root.configRadiusL
-                    }
-
-                    contentItem: Text {
-                        text: "󰍂 "
-                        font.pixelSize: 20 * scaleFactor
-                        font.bold: false
-                        color: root.mOnPrimary
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                    }
-                    onClicked: sddm.login(userModel.lastUser, passwordBox.text, sessionModel.lastIndex)
-                }
+ 
             }
 
             // Controls Row
@@ -557,7 +583,9 @@ Rectangle {
                     currentIndex: sessionModel.lastIndex
                     Layout.preferredWidth: 180 * scaleFactor
                     Layout.preferredHeight: 40 * scaleFactor
-                    // arrowIcon: Qt.resolvedPath("Assets/arrow_down.svg")
+
+                    indicator: Image {
+                    }
 
                     HoverHandler {
                         id: mouse
@@ -604,6 +632,7 @@ Rectangle {
 
                     contentItem: Text {
                         leftPadding: 16 * scaleFactor
+                        rightPadding: 32 * scaleFactor
                         text: sessionList.displayText || ""
                         color: root.mOnSurface
                         font.pixelSize: root.fontSizeL

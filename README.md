@@ -1,9 +1,6 @@
-# Noctalia SDDM Theme
+# Noctalia v5 SDDM Theme
 
-Noctalia SDDM is a cozy, elegant login theme for **SDDM (Simple Desktop Display Manager)**, designed to complement the **Noctalia Shell** experience.
-
-> might want to install
-> qt6-qt5compat
+Noctalia SDDM is a cozy, elegant login theme for **SDDM (Simple Desktop Display Manager)**, designed to complement the **Noctalia v5** experience.
 
 ![Noctalia SDDM Sync Preview](Assets/preview-sync.png)
 
@@ -22,7 +19,8 @@ Noctalia SDDM is a cozy, elegant login theme for **SDDM (Simple Desktop Display 
 ### 1. Clone the repository
 
 ```sh
-git clone --depth=1 https://github.com/vorxiu/sddm-noctalia.git
+
+git clone --depth=1 https://github.com/tattdogg/sddm-noctalia-v5.git
 ```
 
 ### 2. Install the theme
@@ -34,7 +32,7 @@ sudo cp -r sddm-noctalia /usr/share/sddm/themes/
 ```
 
 ### 3. Configure SDDM
- chezmoi-init
+
 Edit your SDDM configuration file to use the new theme:
 
 ```sh
@@ -58,23 +56,24 @@ sudo systemctl restart sddm
 
 ### Sync
 
-Make the file writable by noctalia
+Make the files writable by noctalia
 ```sh
 sudo chmod 666 /usr/share/sddm/themes/sddm-noctalia/*.conf
+sudo chmod 666 /usr/share/sddm/themes/sddm-noctalia/Assets/background.png
 ```
 
-Add the following noctalia wallpaper hook 
+Add the following "on wallpaper changed" noctalia hook 
 ```sh
-sed -i "s|^background=.*|background=$(qs -c noctalia-shell ipc call wallpaper get '')|" /usr/share/sddm/themes/sddm-noctalia/*.conf
+cp "$(noctalia msg wallpaper-get)" /usr/share/sddm/themes/sddm-noctalia/Assets/background.png
 ```
 
 Enable user templates in noctalia settings
 and add to end of
   `~/.config/noctalia/user-templates.toml`
 ```toml
-[templates.sddm-noctalia]
+[theme.templates.user.sddm-noctalia]
 input_path = "/usr/share/sddm/themes/sddm-noctalia/template.conf"
-output_path = "/usr/share/sddm/themes/sddm-noctalia/theme.conf
+output_path = "/usr/share/sddm/themes/sddm-noctalia/theme.conf"
 ```
 
 _Change the wallpaper atleast once to sync_
@@ -100,7 +99,7 @@ radius=20
 You can test the theme without logging out by running the sddm-greeter in test mode:
 
 ```sh
-sddm-greeter-qt6 --test-mode --theme /usr/share/sddm/themes/noctalia-sddm
+sddm-greeter-qt6 --test-mode --theme /usr/share/sddm/themes/sddm-noctalia
 ```
 
 _Note: If you run into "module is not installed" errors, ensure you are using `sddm-greeter-qt6` and have `qt6-5compat` and `qt6-declarative` installed._
@@ -108,7 +107,7 @@ _Note: If you run into "module is not installed" errors, ensure you are using `s
 ## Credits
 
 - All credits to mahaveergurjar for the original theme
-- Designed for **Noctalia shell**
+- Designed for **Noctalia v5**
 
 ---
 

@@ -38,15 +38,7 @@ Add or modify the `[Theme]` section:
 Current=sddm-noctalia-v5
 ```
 
-### 3. Restart SDDM
-
-To apply the changes, restart the display manager:
-
-```sh
-sudo systemctl restart sddm
-```
-
-### 4. Sync (Optional)
+### 3. Sync (Optional)
 
 Make config and wallpaper files writable by Noctalia
 ```sh

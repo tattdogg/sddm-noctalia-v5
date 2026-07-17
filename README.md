@@ -53,7 +53,7 @@ Make config and wallpaper files writable by Noctalia
 sudo chmod 666 /usr/share/sddm/themes/sddm-noctalia-v5/*.conf /usr/share/sddm/themes/sddm-noctalia-v5/Assets/background.png
 ```
 
-Add "On wallpaper changed" nook in Noctalia settings 
+Add "On wallpaper changed" hook in the Noctalia settings 
 ```sh
 cp "$(noctalia msg wallpaper-get)" /usr/share/sddm/themes/sddm-noctalia-v5/Assets/background.png
 ```

@@ -92,7 +92,7 @@ You can test the theme without logging out by running the sddm-greeter in test m
 sddm-greeter-qt6 --test-mode --theme /usr/share/sddm/themes/sddm-noctalia-v5
 ```
 
-### Troubleshooting
+## Troubleshooting
 
 *   **Error:** `module is not installed`
     *   **Solution:** Ensure that the `qt6-5compat` and `qt6-declarative` packages are installed on your system.

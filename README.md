@@ -19,19 +19,11 @@ Noctalia SDDM is a cozy, elegant login theme for **SDDM (Simple Desktop Display 
 ### 1. Clone the repository
 
 ```sh
-
-git clone --depth=1 https://github.com/tattdogg/sddm-noctalia-v5.git
+cd /usr/share/sddm/themes/
+sudo git clone --depth=1 https://github.com/tattdogg/sddm-noctalia-v5.git
 ```
 
-### 2. Install the theme
-
-Move the theme folder to the SDDM themes directory:
-
-```sh
-sudo cp -r sddm-noctalia /usr/share/sddm/themes/
-```
-
-### 3. Configure SDDM
+### 2. Configure SDDM
 
 Edit your SDDM configuration file to use the new theme:
 
@@ -43,10 +35,10 @@ Add or modify the `[Theme]` section:
 
 ```ini
 [Theme]
-Current=sddm-noctalia
+Current=sddm-noctalia-v5
 ```
 
-### 4. Restart SDDM
+### 3. Restart SDDM
 
 To apply the changes, restart the display manager:
 
@@ -54,29 +46,26 @@ To apply the changes, restart the display manager:
 sudo systemctl restart sddm
 ```
 
-### Sync
+### 4. Sync (Optional)
 
-Make the files writable by noctalia
+Make config and wallpaper files writable by Noctalia
 ```sh
-sudo chmod 666 /usr/share/sddm/themes/sddm-noctalia/*.conf
-sudo chmod 666 /usr/share/sddm/themes/sddm-noctalia/Assets/background.png
+sudo chmod 666 /usr/share/sddm/themes/sddm-noctalia-v5/*.conf /usr/share/sddm/themes/sddm-noctalia-v5/Assets/background.png
 ```
 
-Add the following "on wallpaper changed" noctalia hook 
+Add "On wallpaper changed" nook in Noctalia settings 
 ```sh
-cp "$(noctalia msg wallpaper-get)" /usr/share/sddm/themes/sddm-noctalia/Assets/background.png
+cp "$(noctalia msg wallpaper-get)" /usr/share/sddm/themes/sddm-noctalia-v5/Assets/background.png
 ```
 
-Enable user templates in noctalia settings
-and add to end of
-  `~/.config/noctalia/user-templates.toml`
+Append to `~/.config/noctalia/user-templates.toml` (ensure file exists):
 ```toml
 [theme.templates.user.sddm-noctalia]
-input_path = "/usr/share/sddm/themes/sddm-noctalia/template.conf"
-output_path = "/usr/share/sddm/themes/sddm-noctalia/theme.conf"
+input_path = "/usr/share/sddm/themes/sddm-noctalia-v5/template.conf"
+output_path = "/usr/share/sddm/themes/sddm-noctalia-v5/theme.conf"
 ```
 
-_Change the wallpaper atleast once to sync_
+Change the wallpaper and theme in the Noctalia settings at least once to sync.
 
 ## Manual Configuration
 
@@ -90,6 +79,7 @@ radius=20
 ```
 
 ## TODO
+- create automated installation/uninstallation script
 - capslock,numlock and keyboard state indicators
 - animations
 - Some icons for Sessions
@@ -99,7 +89,7 @@ radius=20
 You can test the theme without logging out by running the sddm-greeter in test mode:
 
 ```sh
-sddm-greeter-qt6 --test-mode --theme /usr/share/sddm/themes/sddm-noctalia
+sddm-greeter-qt6 --test-mode --theme /usr/share/sddm/themes/sddm-noctalia-v5
 ```
 
 _Note: If you run into "module is not installed" errors, ensure you are using `sddm-greeter-qt6` and have `qt6-5compat` and `qt6-declarative` installed._
@@ -108,7 +98,3 @@ _Note: If you run into "module is not installed" errors, ensure you are using `s
 
 - All credits to mahaveergurjar for the original theme
 - Designed for **Noctalia v5**
-
----
-
-**Contributions are welcome!** Feel free to fork and submit pull requests.

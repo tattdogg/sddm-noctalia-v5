@@ -10,7 +10,7 @@ set -euo pipefail
 THEME_NAME="sddm-noctalia-v5"
 REPO="tattdogg/sddm-noctalia-v5"
 BRANCH="noctalia"
-ARCHIVE_URL="https://github.com/${REPO}/archive/refs/tags/latest.tar.gz"
+ARCHIVE_URL="https://github.com/${REPO}/tarball/main"
 INSTALL_DIR="/usr/share/sddm/themes/${THEME_NAME}"
 SDDM_CONF="/etc/sddm.conf"
 SDDM_CONF_D="/etc/sddm.conf.d/theme.conf"

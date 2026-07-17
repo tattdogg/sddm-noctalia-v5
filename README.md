@@ -73,16 +73,16 @@ radius=20
 
 ## Experimental
 
-install using script:
+install using script (uses tarball link for now):
 
 ### without Noctalia sync
 ```sh
-curl -fsSL https://raw.githubusercontent.com/tattdogg/sddm-noctalia-v5/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/tattdogg/sddm-noctalia-v5/main/install.sh | sudo bash
 ```
 
 ### with Noctalia sync
 ```sh
-curl -fsSL https://raw.githubusercontent.com/tattdogg/sddm-noctalia-v5/main/install.sh | bash -s -- --noctalia-sync
+curl -fsSL https://raw.githubusercontent.com/tattdogg/sddm-noctalia-v5/main/install.sh | sudo bash -s -- --noctalia-sync
 ```
 
 ## TODO

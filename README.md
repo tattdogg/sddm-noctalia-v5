@@ -42,12 +42,13 @@ Current=sddm-noctalia-v5
 
 Make config and wallpaper files writable by Noctalia
 ```sh
-sudo chmod 666 /usr/share/sddm/themes/sddm-noctalia-v5/*.conf /usr/share/sddm/themes/sddm-noctalia-v5/Assets/background.png
+sudo chmod 644 /usr/share/sddm/themes/sddm-noctalia-v5/*.conf
+sudo chmod 644 /usr/share/sddm/themes/sddm-noctalia-v5/Assets/background.png
 ```
 
 Add "On wallpaper changed" hook in the Noctalia settings 
 ```sh
-cp "$(noctalia msg wallpaper-get)" /usr/share/sddm/themes/sddm-noctalia-v5/Assets/background.png
+cp "$NOCTALIA_WALLPAPER_PATH" /usr/share/sddm/themes/sddm-noctalia-v5/Assets/background.png
 ```
 
 Append to `~/.config/noctalia/user-templates.toml` (ensure file exists):

@@ -71,6 +71,20 @@ blurRadius=0
 radius=20
 ```
 
+## Experimental
+
+install using script:
+
+### without Noctalia sync
+```sh
+curl -fsSL https://raw.githubusercontent.com/tattdogg/sddm-noctalia-v5/main/install.sh | bash
+```
+
+### with Noctalia sync
+```sh
+curl -fsSL https://raw.githubusercontent.com/tattdogg/sddm-noctalia-v5/main/install.sh | bash -s -- --noctalia-sync
+```
+
 ## TODO
 - create automated installation/uninstallation script
 - capslock,numlock and keyboard state indicators
